@@ -1,0 +1,36 @@
+define classes:
+  GameSpot
+    occupiedBy (water[default], shipName)
+  GameBoard
+    list Grid
+      Grid contains lists for rows, which makes a 12x12 gameboard
+      Each spot on the grid gets initialized with a new GameSpot
+      
+      print grid with axes, use letters on one axis and nums on the other
+      represent hits with X,  misses with O, and untested waters with ?
+  Ships
+    name
+    length
+
+    define an insertion checker that validates against an Own Grid
+
+    define a hit checker that checks against an Enemie's Own Grid, then updates the Enemy Outlook
+
+  define an insertion method for the ships:
+    They will have a starting coordinate and a direction. These will need to be checked for validity before the insertion goes live into the gBoard
+    This insertion method needs to work for human players and for the computer player
+
+  define a ship randomizer for the computer player
+    Utilize the insertion method, have any invalid positions automatically regenerated
+  define a random guesser for the computer player
+
+  define a method for checking if either player has lost the game
+
+define "objects":  --do this before starting the game
+  ships
+  gBoardPlayerOwnShips
+  gBoardPlayerEnemyOutlook
+  gBoardComputerPlayerOwnShips
+  gBoardComputerPlayerEnemyOutlook
+
+begin the game loop
