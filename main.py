@@ -40,6 +40,25 @@ class GameBoard:
             for j in range(0,12):
                 returnString += row[j].getSymbol() + ' '
             print(returnString)
+    def spotExists(self, x, y):
+        x = x.toUpper()
+        x = ord(x) - 65
+        if x > -1:
+            if x < 12:
+                xOkay = True
+            else:
+                xOkay = False
+        else:
+            xOkay = False
+        y = int(y) - 1
+        if y > -1:
+            if y < 12:
+                yOkay = True
+            else:
+                yOkay = False
+        else:
+            yOkay = False
+            return xOkay and yOkay
     def coordinates(self, x, y):
         x = ord(x) - 65 #'A-L' to 0-11
         y = int(y) - 1 #'1-12' to 0-11
