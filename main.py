@@ -69,14 +69,6 @@ class Ship:
         self.type = 'ship'
         self.name = name
         self.length = length
-        
-shipList = []
-shipList.append(Ship('Aircraft Carrier', 6))
-shipList.append(Ship('Destroyer', 5))
-shipList.append(Ship('Battleship', 4))
-shipList.append(Ship('Submarine', 3))
-shipList.append(Ship('Cruiser', 3))
-shipList.append(Ship('Patrol Scout', 2))
 
 class Player:
     def __init__(self, name = 'CPU', isComputer = True):
@@ -84,3 +76,10 @@ class Player:
         self.isComputer = isComputer
         self.myFleetViewGameBoard = GameBoard('water')
         self.myEnemyViewGameBoard = GameBoard('untested water')
+        self.shipList = []
+        self.shipList.append(Ship('Aircraft Carrier', 6))
+        self.shipList.append(Ship('Destroyer', 5))
+        self.shipList.append(Ship('Battleship', 4))
+        self.shipList.append(Ship('Submarine', 3))
+        self.shipList.append(Ship('Cruiser', 3))
+        self.shipList.append(Ship('Patrol Scout', 2))
