@@ -4,10 +4,7 @@
 import random
 
 class GameSpot:
-    def __init__(self):
-        self.occupiedBy = ''
-        #initialized to blank string by default
-    def __init__(self, fillChar):
+    def __init__(self, fillChar = ''):
         self.occupiedBy = fillChar
     def setLocation(self, newOccupant):
         self.occupiedBy = newOccupant
@@ -30,10 +27,7 @@ class GameSpot:
             return 'U' # U for Unrecognized error
 
 class GameBoard:
-    def __init__(self):
-        self.grid = [[GameSpot() for _ in range(12)] for _ in range(12)]
-        #creates a 12x12 grid initialized with blank GameSpots
-    def __init__(self, fillChar):
+    def __init__(self, fillChar = ''):
         self.grid = [[GameSpot(fillChar) for _ in range(12)] for _ in range(12)]
         #creates a 12x12 grid initialized with fillChar GameSpots
     def printGrid(self):
@@ -52,11 +46,7 @@ class GameBoard:
         return self.grid[y][x]
 
 class Ship:
-    def __init__(self):
-        self.type = 'ship'
-        self.name = ''
-        self.length = 1
-    def __init__(self, name, length):
+    def __init__(self, name = '', length = 1):
         self.type = 'ship'
         self.name = name
         self.length = length
@@ -70,13 +60,8 @@ shipList.append(Ship('Cruiser', 3))
 shipList.append(Ship('Patrol Scout', 2))
 
 class Player:
-    def __init__(self):
-        self.name = 'CPU'
-        self.isComputer = True
-        self.myFleetViewGameBoard = GameBoard('water')
-        self.myEnemyViewGameBoard = GameBoard('untested water')
-    def __init__(self, name):
+    def __init__(self, name = 'CPU', isComputer = True):
         self.name = name
-        self.isComputer = False
+        self.isComputer = isComputer
         self.myFleetViewGameBoard = GameBoard('water')
         self.myEnemyViewGameBoard = GameBoard('untested water')
