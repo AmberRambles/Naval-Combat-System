@@ -60,6 +60,7 @@ class GameBoard:
             yOkay = False
             return xOkay and yOkay
     def coordinates(self, x, y):
+        x = x.toUpper()
         x = ord(x) - 65 #'A-L' to 0-11
         y = int(y) - 1 #'1-12' to 0-11
         return self.grid[y][x]
@@ -83,3 +84,30 @@ class Player:
         self.shipList.append(Ship('Submarine', 3))
         self.shipList.append(Ship('Cruiser', 3))
         self.shipList.append(Ship('Patrol Scout', 2))
+    def insertShip(self):
+        print('Your Territory')
+        self.myFleetViewGameBoard.printGrid()
+        print('Your unplaced ships:')
+        i = 1
+        for ship in self.shipList:
+            print(f'{i}  Name: {ship.name}, Length: {ship.length}')
+            i += 1
+        userIn = input('Enter the number of the ship you would like to place.')
+        userIn = int(userIn) #to convert str to int, maybe needs a try catch for non int entry
+        userIn -= 1
+        if userIn < 0 or userIn > 5:
+            raise InputError 'unexpected input'
+        shipIndex = userIn
+        print(f'{self.shipList[shipIndex].name} needs {self.shipList[shipIndex].length} spaces')
+        print('You will enter the coordinates for the first space your ship will enter, followed by a direction.')
+        userIn = input('Enter the first coordinate separated by a comma (ex, A,1):')
+        userIn = userIn.split(,)
+        desiredX = userIn[0]
+        desiredY = userIn[1]
+        if self.myFleetViewGameBoard.spotExists(desiredX, desiredY):
+            pass
+        else:
+            raise BadCoordinatesError
+        userIn = input('Enter the direction you would like for the ship to be inserted, ex. up, down, left, right')
+        userIn = userIn.toLower()
+        # if u or up then check those spaces, etc.
