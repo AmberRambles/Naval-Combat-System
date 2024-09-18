@@ -84,30 +84,54 @@ class Player:
         self.shipList.append(Ship('Submarine', 3))
         self.shipList.append(Ship('Cruiser', 3))
         self.shipList.append(Ship('Patrol Scout', 2))
-    def insertShip(self):
+    def printMyTerritory(self):
         print('Your Territory')
         self.myFleetViewGameBoard.printGrid()
+    def printEnemyTerritory(self):
+        pass
+    def insertShip(self):
+        self.printMyTerritory()
         print('Your unplaced ships:')
         i = 1
         for ship in self.shipList:
             print(f'{i}  Name: {ship.name}, Length: {ship.length}')
             i += 1
-        userIn = input('Enter the number of the ship you would like to place.')
-        userIn = int(userIn) #to convert str to int, maybe needs a try catch for non int entry
-        userIn -= 1
-        if userIn < 0 or userIn > 5:
-            raise InputError 'unexpected input'
+        badInput2 = True
+        while badInput2:
+            badInput1 = True
+            while badInput1:
+                userIn = input('Enter the number of the ship you would like to place.')
+                if (userIn.isnumeric()):
+                    badInput1 = False
+                else:
+                    print('Please give a numerical response.')
+            userIn = int(userIn)
+            userIn -= 1
+            if userIn >= 0 and userIn <= 5:
+                badInput2 = False
+            else:
+                print('Please enter a valid number from the list.')
         shipIndex = userIn
         print(f'{self.shipList[shipIndex].name} needs {self.shipList[shipIndex].length} spaces')
         print('You will enter the coordinates for the first space your ship will enter, followed by a direction.')
-        userIn = input('Enter the first coordinate separated by a comma (ex, A,1):')
-        userIn = userIn.split(,)
-        desiredX = userIn[0]
-        desiredY = userIn[1]
-        if self.myFleetViewGameBoard.spotExists(desiredX, desiredY):
-            pass
-        else:
-            raise BadCoordinatesError
+        self.printMyTerritory()
+        #badDirection1?
+        badCoordinates = True
+        while badCoordinates:
+            userIn = input('Enter the coordinate, separated by a comma (ex, A,1):')
+            userIn = userIn.replace(' ', '')
+            userIn = userIn.split(',')
+            desiredX = userIn[0]
+            desiredY = userIn[1]
+            if self.myFleetViewGameBoard.spotExists(desiredX, desiredY):
+                badCoordinates = False
+            else:
+                print('Something is wrong with your coordinates.')
+        #stopped here on my rewrite. may need to go back and add check for the following input bc coordinates and direction are linked and a valid coordinate may not have a valid direction depending on how ships have already been placed
         userIn = input('Enter the direction you would like for the ship to be inserted, ex. up, down, left, right')
         userIn = userIn.toLower()
         # if u or up then check those spaces, etc.
+
+#for testing:
+user = Player('Amber', False)
+user.insertShip()
