@@ -41,7 +41,7 @@ class GameBoard:
                 returnString += row[j].getSymbol() + ' '
             print(returnString)
     def spotExists(self, x, y):
-        x = x.toUpper()
+        x = x.upper()
         x = ord(x) - 65
         if x > -1:
             if x < 12:
@@ -60,7 +60,7 @@ class GameBoard:
             yOkay = False
             return xOkay and yOkay
     def coordinates(self, x, y):
-        x = x.toUpper()
+        x = x.upper()
         x = ord(x) - 65 #'A-L' to 0-11
         y = int(y) - 1 #'1-12' to 0-11
         return self.grid[y][x]
