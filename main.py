@@ -115,22 +115,47 @@ class Player:
         print(f'{self.shipList[shipIndex].name} needs {self.shipList[shipIndex].length} spaces')
         print('You will enter the coordinates for the first space your ship will enter, followed by a direction.')
         self.printMyTerritory()
-        #badDirection1?
-        badCoordinates = True
-        while badCoordinates:
-            userIn = input('Enter the coordinate, separated by a comma (ex, A,1):')
-            userIn = userIn.replace(' ', '')
-            userIn = userIn.split(',')
-            desiredX = userIn[0]
-            desiredY = userIn[1]
-            if self.myFleetViewGameBoard.spotExists(desiredX, desiredY):
-                badCoordinates = False
-            else:
-                print('Something is wrong with your coordinates.')
-        #stopped here on my rewrite. may need to go back and add check for the following input bc coordinates and direction are linked and a valid coordinate may not have a valid direction depending on how ships have already been placed
-        userIn = input('Enter the direction you would like for the ship to be inserted, ex. up, down, left, right')
-        userIn = userIn.toLower()
-        # if u or up then check those spaces, etc.
+        badDirection2 = True
+        while badDirection2:
+            badCoordinates = True
+            while badCoordinates:
+                userIn = input('Enter the coordinate, separated by a comma (ex, A,1):')
+                userIn = userIn.replace(' ', '')
+                userIn = userIn.split(',')
+                    
+                desiredX = userIn[0]
+                desiredY = userIn[1]
+                    
+                if self.myFleetViewGameBoard.spotExists(desiredX, desiredY):
+                    badCoordinates = False
+                else:
+                    print('Something is wrong with your coordinates.')
+            badDirection1 = True
+            while badDirection1:
+                userIn = input('Enter the direction you would like for the ship to be inserted, ex. up, down, left, right').lower()
+                if userIn == 'up' or userIn =='u':
+                    #get length of ship for loop
+                    shipLen = self.shipList[shipIndex].length
+                    for i in range(shipLen):
+                        #check validity of each space
+                        thisY = desiredY - i
+                        if self.myFleetViewGameBoard.spotExists(desiredX, thisY):
+                            #check availability of each space
+                            if self.myFleetViewGameBoard.coordinates(desiredX, thisY).getLocation == 'water':
+                                pass
+                            else:
+                                print('Not all spots are free')
+                        else:
+                            print('Not all spots Exist')
+                    #set badDirection1 to False
+                elif userIn == 'down' or userIn == 'd':
+                    pass
+                elif userIn == 'left' or userIn == 'l':
+                    pass
+                elif userIn == 'right' or userIn == 'r':
+                    pass
+                else:
+                    print('I did not understand that direction.')
 
 #for testing:
 user = Player('Amber', False)
