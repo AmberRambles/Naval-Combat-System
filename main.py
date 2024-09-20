@@ -88,7 +88,8 @@ class Player:
         print('Your Territory')
         self.myFleetViewGameBoard.printGrid()
     def printEnemyTerritory(self):
-        pass
+        print('Enemy Territory')
+        self.myEnemyViewGameBoard.printGrid()
     def insertShip(self):
         self.printMyTerritory()
         print('Your unplaced ships:')
