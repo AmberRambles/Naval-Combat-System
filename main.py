@@ -70,6 +70,7 @@ class Ship:
         self.type = 'ship'
         self.name = name
         self.length = length
+        self.occupying = []
 
 class Player:
     def __init__(self, name = 'CPU', isComputer = True):
@@ -84,6 +85,7 @@ class Player:
         self.shipList.append(Ship('Submarine', 3))
         self.shipList.append(Ship('Cruiser', 3))
         self.shipList.append(Ship('Patrol Scout', 2))
+        self.deployedShips = []
     def printMyTerritory(self):
         print('Your Territory')
         self.myFleetViewGameBoard.printGrid()
