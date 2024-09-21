@@ -206,6 +206,11 @@ class Player:
                             print('Not all spots Exist')
                 else:
                     print('I did not understand that direction.')
+            for item in coordList:
+                x = item[0]
+                y = item[1]
+                #do more stuff
+                #set badDirection2 to False when done
 
 #for testing:
 user = Player('Amber', False)
