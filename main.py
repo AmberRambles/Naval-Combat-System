@@ -139,18 +139,20 @@ class Player:
                 if userIn == 'up' or userIn =='u':
                     #get length of ship for loop
                     shipLen = self.shipList[shipIndex].length
+                    coordList = []
                     for i in range(shipLen):
                         #check validity of each space
                         thisY = desiredY - i
                         if self.myFleetViewGameBoard.spotExists(desiredX, thisY):
                             #check availability of each space
                             if self.myFleetViewGameBoard.coordinates(desiredX, thisY).getLocation == 'water':
-                                pass
+                                badDirection1 = False
+                                coordList.append([desiredX, thisY])
                             else:
                                 print('Not all spots are free')
+                                badDirection1 = True
                         else:
                             print('Not all spots Exist')
-                    #set badDirection1 to False
                 elif userIn == 'down' or userIn == 'd':
                     pass
                 elif userIn == 'left' or userIn == 'l':
