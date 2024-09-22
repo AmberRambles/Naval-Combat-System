@@ -67,7 +67,7 @@ class GameBoard:
 
 class Ship:
     def __init__(self, name = '', length = 1):
-        self.type = 'ship'
+        self.typeName = 'ship'
         self.name = name
         self.length = length
         self.occupying = []
@@ -124,11 +124,9 @@ class Player:
             while badCoordinates:
                 userIn = input('Enter the coordinate, separated by a comma (ex, A,1):')
                 userIn = userIn.replace(' ', '')
-                userIn = userIn.split(',')
-                    
+                userIn = userIn.split(',')   
                 desiredX = userIn[0]
-                desiredY = userIn[1]
-                    
+                desiredY = userIn[1] 
                 if self.myFleetViewGameBoard.spotExists(desiredX, desiredY):
                     badCoordinates = False
                 else:
@@ -209,8 +207,15 @@ class Player:
             for item in coordList:
                 x = item[0]
                 y = item[1]
-                #do more stuff
-                #set badDirection2 to False when done
+                self.shipList[shipIndex].occupying.append([x, y])
+                badDirection2 = False
+        for coord in self.shipList[shipIndex].occupying:
+            x = coord[0]
+            y = coord[1]
+            self.myFleetViewGameBoard.coordinates(x, y) = self.shipList[shipIndex].typeName
+        self.deployedShips.append(self.shipList.pop(shipIndex))
+        #end of insertShip
+    #start of next Player method
 
 #for testing:
 user = Player('Amber', False)
