@@ -115,6 +115,7 @@ class Player:
             else:
                 print('Please enter a valid number from the list.')
         shipIndex = userIn
+        print()
         print(f'{self.shipList[shipIndex].name} needs {self.shipList[shipIndex].length} spaces')
         print('You will enter the coordinates for the first space your ship will enter, followed by a direction.')
         self.printMyTerritory()
@@ -122,7 +123,7 @@ class Player:
         while badDirection2:
             badCoordinates = True
             while badCoordinates:
-                userIn = input('Enter the coordinate, separated by a comma (ex, A,1):')
+                userIn = input('Enter the coordinate, separated by a comma (ex, A,1): ').upper()
                 userIn = userIn.replace(' ', '')
                 userIn = userIn.split(',')   
                 desiredX = userIn[0]
@@ -163,7 +164,7 @@ class Player:
                         thisY = desiredY + i
                         if self.myFleetViewGameBoard.spotExists(desiredX, thisY):
                             #check availability of each space
-                            if self.myFleetViewGameBoard.coordinates(desiredX, thisY).getLocation == 'water':
+                            if self.myFleetViewGameBoard.coordinates(desiredX, thisY).getLocation() == 'water':
                                 coordList.append([desiredX, thisY])
                             else:
                                 print('Not all spots are free')
@@ -181,7 +182,7 @@ class Player:
                         thisX = chr(ord(desiredX) - i)  # Convert desiredX to ASCII, subtract i, and convert back to char
                         if self.myFleetViewGameBoard.spotExists(thisX, desiredY):
                             #check availability of each space
-                            if self.myFleetViewGameBoard.coordinates(thisX, desiredY).getLocation == 'water':
+                            if self.myFleetViewGameBoard.coordinates(thisX, desiredY).getLocation() == 'water':
                                 coordList.append([thisX, desiredY])
                             else:
                                 print('Not all spots are free')
@@ -199,7 +200,7 @@ class Player:
                         thisX = chr(ord(desiredX) + i)  # Convert desiredX to ASCII, add i, and convert back to char
                         if self.myFleetViewGameBoard.spotExists(thisX, desiredY):
                             #check availability of each space
-                            if self.myFleetViewGameBoard.coordinates(thisX, desiredY).getLocation == 'water':
+                            if self.myFleetViewGameBoard.coordinates(thisX, desiredY).getLocation() == 'water':
                                 coordList.append([thisX, desiredY])
                             else:
                                 print('Not all spots are free')
@@ -214,7 +215,7 @@ class Player:
                 x = item[0]
                 y = item[1]
                 self.shipList[shipIndex].occupying.append([x, y])
-                badDirection2 = False
+            badDirection2 = False
         for coord in self.shipList[shipIndex].occupying:
             x = coord[0]
             y = coord[1]
@@ -226,3 +227,13 @@ class Player:
 #for testing:
 user = Player('Amber', False)
 user.insertShip()
+print('success')
+user.myFleetViewGameBoard.printGrid()
+finalIn = input('Again? Yes/No').lower()
+if finalIn == 'yes' or finalIn == 'y':
+    again = True
+else:
+    again = False
+if again:
+    user.insertShip()
+    user.myFleetViewGameBoard.printGrid()
