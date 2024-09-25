@@ -184,9 +184,10 @@ class Player:
                                 print('Not all spots are free')
                                 badDirection1 = True
                                 break
-                            badDirection1 = False
                         else:
                             print('Not all spots Exist')
+                    else:
+                        badDirection1 = False
                 elif userIn == 'down' or userIn == 'd':
                     #get length of ship for loop
                     shipLen = self.shipList[shipIndex].length
@@ -203,9 +204,10 @@ class Player:
                                 print('Not all spots are free')
                                 badDirection1 = True
                                 break
-                            badDirection1 = False
                         else:
                             print('Not all spots Exist')
+                    else:
+                        badDirection1 = False
                 elif userIn == 'left' or userIn == 'l':
                     #get length of ship for loop
                     shipLen = self.shipList[shipIndex].length
@@ -221,9 +223,10 @@ class Player:
                                 print('Not all spots are free')
                                 badDirection1 = True
                                 break
-                            badDirection1 = False
                         else:
                             print('Not all spots Exist')
+                    else:
+                        badDirection1 = False
                 elif userIn == 'right' or userIn == 'r':
                     #get length of ship for loop
                     shipLen = self.shipList[shipIndex].length
@@ -239,9 +242,10 @@ class Player:
                                 print('Not all spots are free')
                                 badDirection1 = True
                                 break
-                            badDirection1 = False
                         else:
                             print('Not all spots Exist')
+                    else:
+                        badDirection1 = False
                 else:
                     print('I did not understand that direction.')
             for item in coordList:
