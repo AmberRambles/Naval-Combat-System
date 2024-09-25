@@ -3,6 +3,8 @@
 # main.py
 import random
 
+DEBUG = True
+
 class GameSpot:
     def __init__(self, fillChar = ''):
         self.occupiedBy = fillChar
@@ -115,6 +117,8 @@ class Player:
             else:
                 print('Please enter a valid number from the list.')
         shipIndex = userIn
+        if DEBUG:
+            print(f'shipIndex = {shipIndex}')
         print()
         print(f'{self.shipList[shipIndex].name} needs {self.shipList[shipIndex].length} spaces')
         print('You will enter the coordinates for the first space your ship will enter, followed by a direction.')
@@ -124,10 +128,22 @@ class Player:
             badCoordinates = True
             while badCoordinates:
                 userIn = input('Enter the coordinate, separated by a comma (ex, A,1): ').upper()
+                if DEBUG:
+                    print(f'userIn = {userIn}')
                 userIn = userIn.replace(' ', '')
-                userIn = userIn.split(',')   
+                if DEBUG:
+                    print(f'userIn = {userIn}')
+                userIn = userIn.split(',')
+                if DEBUG:
+                    print(f'userIn = {userIn}')
                 desiredX = userIn[0]
-                desiredY = userIn[1] 
+                if DEBUG:
+                    print(f'desiredX = {desiredX}')
+                desiredY = userIn[1]
+                if DEBUG:
+                    print(f'desiredY = {desiredY}')
+                    print(f'Calling: self(Player-class).myFleetViewGameBoard.spotExists({desiredX}, {desiredY})')
+                    print(self.myFleetViewGameBoard.spotExists(desiredX, desiredY))
                 if self.myFleetViewGameBoard.spotExists(desiredX, desiredY):
                     badCoordinates = False
                 else:
@@ -136,13 +152,31 @@ class Player:
             while badDirection1:
                 userIn = input('Enter the direction you would like for the ship to be inserted, ex. up, down, left, right').lower()
                 if userIn == 'up' or userIn =='u':
+                if DEBUG:
+                    print(f'userIn = {userIn}')
+                    print(f'userIn = {userIn}')
                     #get length of ship for loop
                     shipLen = self.shipList[shipIndex].length
                     coordList = []
+                    if DEBUG:
+                        print(f'shipLen = {shipLen}')
+                        print(f'coordList = {coordList}')
                     for i in range(shipLen):
                         #check validity of each space
+                        if DEBUG:
+                            print(f'i = {i}')
+                            print(f'shipLen = {shipLen}')
+                            print(f'coordList = {coordList}')
+                            print(f'desiredX = {desiredX}')
+                            print(f'desiredY = {desiredY}')
                         desiredY = int(desiredY)
+                        if DEBUG:
+                            print(f'desiredY = {desiredY}')
                         thisY = desiredY - i
+                        if DEBUG:
+                            print(f'thisY = {thisY}')
+                            print(f'Calling: self.myFleetViewGameBoard.spotExists({desiredX}, {thisY})')
+                            print(self.myFleetViewGameBoard.spotExists(desiredX, thisY))
                         if self.myFleetViewGameBoard.spotExists(desiredX, thisY):
                             #check availability of each space
                             if self.myFleetViewGameBoard.coordinates(desiredX, thisY).getLocation() == 'water':
