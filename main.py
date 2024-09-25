@@ -151,10 +151,9 @@ class Player:
             badDirection1 = True
             while badDirection1:
                 userIn = input('Enter the direction you would like for the ship to be inserted, ex. up, down, left, right').lower()
-                if userIn == 'up' or userIn =='u':
                 if DEBUG:
                     print(f'userIn = {userIn}')
-                    print(f'userIn = {userIn}')
+                if userIn == 'up' or userIn == 'u':
                     #get length of ship for loop
                     shipLen = self.shipList[shipIndex].length
                     coordList = []
