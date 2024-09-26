@@ -178,8 +178,16 @@ class Player:
                             print(self.myFleetViewGameBoard.spotExists(desiredX, thisY))
                         if self.myFleetViewGameBoard.spotExists(desiredX, thisY):
                             #check availability of each space
+                            if DEBUG:
+                                print(f'Calling: self.myFleetViewGameBoard.coordinates({desiredX}, {thisY}).getLocation()')
+                                print(self.myFleetViewGameBoard.coordinates(desiredX, thisY).getLocation())
+                                print('If that is water...')
                             if self.myFleetViewGameBoard.coordinates(desiredX, thisY).getLocation() == 'water':
+                                if DEBUG:
+                                    print('appending to coordList')
                                 coordList.append([desiredX, thisY])
+                                if DEBUG:
+                                    print(coordList)
                             else:
                                 print('Not all spots are free')
                                 badDirection1 = True
@@ -187,6 +195,8 @@ class Player:
                         else:
                             print('Not all spots Exist')
                     else:
+                        if DEBUG:
+                            print('setting badDirection1 to False')
                         badDirection1 = False
                 elif userIn == 'down' or userIn == 'd':
                     #get length of ship for loop
