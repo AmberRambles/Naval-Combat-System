@@ -241,6 +241,8 @@ class Player:
                                 break
                         else:
                             print('Not all spots Exist')
+                            badDirection1 = True
+                                break
                     else:
                         if DEBUG:
                             print('setting badDirection1 to False')
@@ -284,6 +286,8 @@ class Player:
                                 break
                         else:
                             print('Not all spots Exist')
+                            badDirection1 = True
+                            break
                     else:
                         if DEBUG:
                             print('setting badDirection1 to False')
@@ -327,6 +331,8 @@ class Player:
                                 break
                         else:
                             print('Not all spots Exist')
+                            badDirection1 = True
+                            break
                     else:
                         if DEBUG:
                             print('setting badDirection1 to False')
