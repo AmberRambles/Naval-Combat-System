@@ -204,14 +204,37 @@ class Player:
                     #get length of ship for loop
                     shipLen = self.shipList[shipIndex].length
                     coordList = []
+                    if DEBUG:
+                        print(f'shipLen = {shipLen}')
+                        print(f'coordList = {coordList}')
                     for i in range(shipLen):
                         #check validity of each space
+                        if DEBUG:
+                            print(f'i = {i}')
+                            print(f'shipLen = {shipLen}')
+                            print(f'coordList = {coordList}')
+                            print(f'desiredX = {desiredX}')
+                            print(f'desiredY = {desiredY}')
                         desiredY = int(desiredY)
+                        if DEBUG:
+                            print(f'desiredY = {desiredY}')
                         thisY = desiredY + i
+                        if DEBUG:
+                            print(f'thisY = {thisY}')
+                            print(f'Calling: self.myFleetViewGameBoard.spotExists({desiredX}, {thisY})')
+                            print(self.myFleetViewGameBoard.spotExists(desiredX, thisY))
                         if self.myFleetViewGameBoard.spotExists(desiredX, thisY):
                             #check availability of each space
+                            if DEBUG:
+                                print(f'Calling: self.myFleetViewGameBoard.coordinates({desiredX}, {thisY}).getLocation()')
+                                print(self.myFleetViewGameBoard.coordinates(desiredX, thisY).getLocation())
+                                print('If that is water...')
                             if self.myFleetViewGameBoard.coordinates(desiredX, thisY).getLocation() == 'water':
+                                if DEBUG:
+                                    print('appending to coordList')
                                 coordList.append([desiredX, thisY])
+                                if DEBUG:
+                                    print(coordList)
                             else:
                                 print('Not all spots are free')
                                 badDirection1 = True
@@ -219,18 +242,42 @@ class Player:
                         else:
                             print('Not all spots Exist')
                     else:
+                        if DEBUG:
+                            print('setting badDirection1 to False')
                         badDirection1 = False
                 elif userIn == 'left' or userIn == 'l':
                     #get length of ship for loop
                     shipLen = self.shipList[shipIndex].length
                     coordList = []
+                    if DEBUG:
+                        print(f'shipLen = {shipLen}')
+                        print(f'coordList = {coordList}')
                     for i in range(shipLen):
                         #check validity of each space
-                        thisX = chr(ord(desiredX) - i)  # Convert desiredX to ASCII, subtract i, and convert back to char
+                        if DEBUG:
+                            print(f'i = {i}')
+                            print(f'shipLen = {shipLen}')
+                            print(f'coordList = {coordList}')
+                            print(f'desiredX = {desiredX}')
+                            print(f'desiredY = {desiredY}')
+                            print('Convert desiredX to ASCII, subtract i, and convert back to char, then save to thisX')
+                        thisX = chr(ord(desiredX) - i)  # Convert desiredX to ASCII, subtract i, and convert back to char, then save to thisX
+                        if DEBUG:
+                            print(f'thisX = {thisX}')
+                            print(f'Calling: self.myFleetViewGameBoard.spotExists({thisX}, {desiredY})')
+                            print(self.myFleetViewGameBoard.spotExists(thisX, desiredY))
                         if self.myFleetViewGameBoard.spotExists(thisX, desiredY):
                             #check availability of each space
+                            if DEBUG:
+                                print(f'Calling: self.myFleetViewGameBoard.coordinates({thisX}, {desiredY}).getLocation()')
+                                print(self.myFleetViewGameBoard.coordinates(thisX, desiredY).getLocation())
+                                print('If that is water...')
                             if self.myFleetViewGameBoard.coordinates(thisX, desiredY).getLocation() == 'water':
+                                if DEBUG:
+                                    print('appending to coordList')
                                 coordList.append([thisX, desiredY])
+                                if DEBUG:
+                                    print(coordList)
                             else:
                                 print('Not all spots are free')
                                 badDirection1 = True
@@ -238,18 +285,42 @@ class Player:
                         else:
                             print('Not all spots Exist')
                     else:
+                        if DEBUG:
+                            print('setting badDirection1 to False')
                         badDirection1 = False
                 elif userIn == 'right' or userIn == 'r':
                     #get length of ship for loop
                     shipLen = self.shipList[shipIndex].length
                     coordList = []
+                    if DEBUG:
+                        print(f'shipLen = {shipLen}')
+                        print(f'coordList = {coordList}')
                     for i in range(shipLen):
                         #check validity of each space
-                        thisX = chr(ord(desiredX) + i)  # Convert desiredX to ASCII, add i, and convert back to char
+                        if DEBUG:
+                            print(f'i = {i}')
+                            print(f'shipLen = {shipLen}')
+                            print(f'coordList = {coordList}')
+                            print(f'desiredX = {desiredX}')
+                            print(f'desiredY = {desiredY}')
+                            print('Convert desiredX to ASCII, add i, and convert back to char, then save to thisX')
+                        thisX = chr(ord(desiredX) + i)  # Convert desiredX to ASCII, add i, and convert back to char, then save to thisX
+                        if DEBUG:
+                            print(f'thisX = {thisX}')
+                            print(f'Calling: self.myFleetViewGameBoard.spotExists({thisX}, {desiredY})')
+                            print(self.myFleetViewGameBoard.spotExists(thisX, desiredY))
                         if self.myFleetViewGameBoard.spotExists(thisX, desiredY):
                             #check availability of each space
+                            if DEBUG:
+                                print(f'Calling: self.myFleetViewGameBoard.coordinates({thisX}, {desiredY}).getLocation()')
+                                print(self.myFleetViewGameBoard.coordinates(thisX, desiredY).getLocation())
+                                print('If that is water...')
                             if self.myFleetViewGameBoard.coordinates(thisX, desiredY).getLocation() == 'water':
+                                if DEBUG:
+                                    print('appending to coordList')
                                 coordList.append([thisX, desiredY])
+                                if DEBUG:
+                                    print(coordList)
                             else:
                                 print('Not all spots are free')
                                 badDirection1 = True
@@ -257,6 +328,8 @@ class Player:
                         else:
                             print('Not all spots Exist')
                     else:
+                        if DEBUG:
+                            print('setting badDirection1 to False')
                         badDirection1 = False
                 else:
                     print('I did not understand that direction.')
