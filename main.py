@@ -105,7 +105,7 @@ class Player:
         while badInput2:
             badInput1 = True
             while badInput1:
-                userIn = input('Enter the number of the ship you would like to place.')
+                userIn = input('Enter the number of the ship you would like to place: ')
                 if (userIn.isnumeric()):
                     badInput1 = False
                 else:
@@ -150,7 +150,7 @@ class Player:
                     print('Something is wrong with your coordinates.')
             badDirection1 = True
             while badDirection1:
-                userIn = input('Enter the direction you would like for the ship to be inserted, ex. up, down, left, right').lower()
+                userIn = input('Enter the direction you would like for the ship to be inserted, ex. up, down, left, right: ').lower()
                 if DEBUG:
                     print(f'userIn = {userIn}')
                 if userIn == 'up' or userIn == 'u':
@@ -266,7 +266,7 @@ user = Player('Amber', False)
 user.insertShip()
 print('success')
 user.myFleetViewGameBoard.printGrid()
-finalIn = input('Again? Yes/No').lower()
+finalIn = input('Again? Yes/No: ').lower()
 if finalIn == 'yes' or finalIn == 'y':
     again = True
 else:
