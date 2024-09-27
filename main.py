@@ -349,19 +349,49 @@ class Player:
             y = coord[1]
             self.myFleetViewGameBoard.coordinates(x, y).setLocation(self.shipList[shipIndex].typeName)
         self.deployedShips.append(self.shipList.pop(shipIndex))
+        if DEBUG:
+            print('Printing self.deployedShips')
+            print(self.deployedShips)
         #end of insertShip
-    #start of next Player method
+    def isHit(self, x, y):
+        if self.myFleetViewGameBoard.coordinates(x, y).getLocation() == 'ship':
+            return True
+        else:
+            return False
 
-#for testing:
-user = Player('Amber', False)
-user.insertShip()
-print('success')
-user.myFleetViewGameBoard.printGrid()
-finalIn = input('Again? Yes/No: ').lower()
-if finalIn == 'yes' or finalIn == 'y':
-    again = True
-else:
-    again = False
-if again:
-    user.insertShip()
-    user.myFleetViewGameBoard.printGrid()
+class Game:
+    def __init__(self):
+        self.gameOver = False
+        self.playerList = []
+        self.turnCount = 0
+        if DEBUG:
+            print('Game start')
+        # continue here for game init
+    def createHumanPlayer(self):
+        name = ''
+        name = input('What will you be called?\n')
+        self.playerList.append(Player(name, False))
+    def createCompPlayer(self):
+        self.playerList.append(Player())
+    def humanTurn(self):
+        pass
+        # Present both views
+        # Prompt for attack coords
+        # input and spotExists validation
+        # not already guessed validation
+        # check if comp player is hit
+        # update GameBoards as needed for hit or miss
+        # report turn update to user
+        # check if comp player lost
+    def compTurn(self):
+        pass
+        # generate random attack coords
+        # spotExists validation
+        # not already guessed validation
+        # check if human player was hit
+        # update GameBoards as needed for hit or miss
+        # report turn update to user
+        # check if human player lost
+
+#testing
+game = Game()
