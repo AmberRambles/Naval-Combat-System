@@ -73,6 +73,7 @@ class Ship:
         self.name = name
         self.length = length
         self.occupying = []
+        self.hits = 0
 
 class Player:
     def __init__(self, name = 'CPU', isComputer = True):
@@ -374,13 +375,47 @@ class Game:
     def createCompPlayer(self):
         self.playerList.append(Player())
     def humanTurn(self):
-        pass
         # Present both views
+        self.playerList[0].myEnemyViewGameBoard.printGrid()
+        print()
+        self.playerList[0].myFleetViewGameBoard.printGrid()
+        print()
         # Prompt for attack coords
         # input and spotExists validation
+        badCoordinates = True
+            while badCoordinates:
+                userIn = input('Enter the coordinate for the space you want to attack, separated by a comma (ex, A,1): ').upper()
+                userIn = userIn.replace(' ', '')
+                userIn = userIn.split(',')
+                desiredX = userIn[0]
+                desiredY = userIn[1]
+                if self.myEnemyViewGameBoard.spotExists(desiredX, desiredY):
+                    badCoordinates = False
+                else:
+                    print('Something is wrong with your coordinates.')
+                    
         # not already guessed validation
+        # TODO impliment later
+        
         # check if comp player is hit
-        # update GameBoards as needed for hit or miss
+        if self.playerList[1].myFleetViewGameBoard.coordinates(desiredX, desiredY).getLocation() == 'ship':
+            #hit
+            # update GameBoards as needed for hit
+            self.playerList[0].myEnemyViewGameBoard.coordinates(desiredX, desiredY).setLocation('ship')
+            self.playerList[1].myFleetViewGameBoard.coordinates(desiredX, desiredY).setLocation('ship')
+            # update shipHits
+            shipIndex = -1
+            i = 0
+            for ship in self.playerList[1].deployedShips:
+                for coord in ship.occupying:
+                    pass
+            # check if this hit sunk that ship
+                #check if this sinking caused the human to win
+        else:
+            #miss
+            # update GameBoards as needed for miss
+            pass
+        
         # report turn update to user
         # check if comp player lost
     def compTurn(self):
