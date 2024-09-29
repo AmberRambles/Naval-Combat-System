@@ -407,10 +407,27 @@ class Game:
             shipIndex = -1
             i = 0
             for ship in self.playerList[1].deployedShips:
+                #checks all compy ships
                 for coord in ship.occupying:
-                    pass
+                    #check if the desiredX, desiredY matches any coords of this ship
+                    if desiredX == coord[0] and desiredY == coord[1]:
+                        shipIndex = i
+                i += 1
             # check if this hit sunk that ship
-                #check if this sinking caused the human to win
+            # TODO check this again...
+            shipNotSunk = True
+            while shipNotSunk:
+                hitList = 0
+                for coord in self.playerList[1].deployedShips[shipIndex].occupying:
+                    x = coord[0]
+                    y = coord[1]
+                    if self.playerList[1].myFleetViewGameBoard.coordinates(x, y).getLocation() == 'hit':
+                        hitList += 1
+                    else:
+                        break
+                if self.playerList[1].deployedShips[shipIndex].length == hitList:
+                    shipNotSunk = False
+            #check if this sinking caused the human to win
         else:
             #miss
             # update GameBoards as needed for miss
