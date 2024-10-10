@@ -8,7 +8,7 @@ DEBUG = True
 class GameSpot:
     def __init__(self, fillChar = ''):
         self.occupiedBy = fillChar
-    def setLocation(self, newOccupant):
+    def setLocation(self, newOccupant = ''):
         self.occupiedBy = newOccupant
     def getLocation(self):
         return self.occupiedBy
