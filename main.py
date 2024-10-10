@@ -442,5 +442,9 @@ class Game:
         # report turn update to user
         # check if human player lost
 
-#testing
+#main logic
 game = Game()
+game.createHumanPlayer()
+game.createCompPlayer()
+while game.gameOver == False:
+    pass
