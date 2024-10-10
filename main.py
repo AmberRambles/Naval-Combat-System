@@ -389,21 +389,21 @@ class Game:
                 userIn = userIn.split(',')
                 desiredX = userIn[0]
                 desiredY = userIn[1]
-                if self.myEnemyViewGameBoard.spotExists(desiredX, desiredY):
-                    badCoordinates = False
+                if self.playerList[0]myEnemyViewGameBoard.spotExists(desiredX, desiredY): #if the desiredX and desiredY are valid
+                    spot = self.playerList[0].myEnemyViewGameBoard.coordinates(desiredX, desiredY).getSymbol()
+                    if spot == 'X' or spot == 'O': #if the valid coordinates have been used before
+                        print('This spot was already attacked.')
+                    else:
+                        badCoordinates = False 
                 else:
                     print('Something is wrong with your coordinates.')
-                    
-        # not already guessed validation
-        # TODO impliment later
-        
         # check if comp player is hit
         if self.playerList[1].myFleetViewGameBoard.coordinates(desiredX, desiredY).getLocation() == 'ship':
             #hit
             # update GameBoards as needed for hit
-            self.playerList[0].myEnemyViewGameBoard.coordinates(desiredX, desiredY).setLocation('ship')
-            self.playerList[1].myFleetViewGameBoard.coordinates(desiredX, desiredY).setLocation('ship')
-            # update shipHits
+            self.playerList[0].myEnemyViewGameBoard.coordinates(desiredX, desiredY).setLocation('hit')
+            self.playerList[1].myFleetViewGameBoard.coordinates(desiredX, desiredY).setLocation('hit')
+            #find shipindex that was hit
             shipIndex = -1
             i = 0
             for ship in self.playerList[1].deployedShips:
@@ -413,28 +413,25 @@ class Game:
                     if desiredX == coord[0] and desiredY == coord[1]:
                         shipIndex = i
                 i += 1
+            # update shipHits
+            self.playerList[1].deployedShips[shipIndex].hits += 1
+            # report turn update to user
+            print("It's a hit!")
             # check if this hit sunk that ship
-            # TODO check this again...
-            shipNotSunk = True
-            while shipNotSunk:
-                hitList = 0
-                for coord in self.playerList[1].deployedShips[shipIndex].occupying:
-                    x = coord[0]
-                    y = coord[1]
-                    if self.playerList[1].myFleetViewGameBoard.coordinates(x, y).getLocation() == 'hit':
-                        hitList += 1
-                    else:
-                        break
-                if self.playerList[1].deployedShips[shipIndex].length == hitList:
-                    shipNotSunk = False
-            #check if this sinking caused the human to win
+            if self.playerList[1].deployedShips[shipIndex].hits == self.playerList[1].deployedShips[shipIndex].length: #if this hit DID sink the ship
+                print(f'You sunk their {self.playerList[1].deployedShips[shipIndex].name}!')
+                self.playerList[1].deployedShips.pop(shipIndex) #remove the ship from computer player's deployedShips
+                #check if this sinking caused the human to win
+                if len(self.playerList[1].deployedShips) == 0: #if the computer has no remaining ships
+                    print(f'Game Over! {self.playerList[0].name} has Won')
+                    self.gameOver = True
         else:
             #miss
             # update GameBoards as needed for miss
-            pass
-        
-        # report turn update to user
-        # check if comp player lost
+            self.playerList[0].myEnemyViewGameBoard.coordinates(desiredX, desiredY).setLocation('miss')
+            self.playerList[1].myFleetViewGameBoard.coordinates(desiredX, desiredY).setLocation('miss')
+            #report miss to player
+            print("It's a miss.")
     def compTurn(self):
         pass
         # generate random attack coords
