@@ -390,20 +390,20 @@ class Game:
         # Prompt for attack coords
         # input and spotExists validation
         badCoordinates = True
-            while badCoordinates:
-                userIn = input('Enter the coordinate for the space you want to attack, separated by a comma (ex, A,1): ').upper()
-                userIn = userIn.replace(' ', '')
-                userIn = userIn.split(',')
-                desiredX = userIn[0]
-                desiredY = userIn[1]
-                if self.playerList[0]myEnemyViewGameBoard.spotExists(desiredX, desiredY): #if the desiredX and desiredY are valid
-                    spot = self.playerList[0].myEnemyViewGameBoard.coordinates(desiredX, desiredY).getSymbol()
-                    if spot == 'X' or spot == 'O': #if the valid coordinates have been used before
-                        print('This spot was already attacked.')
-                    else:
-                        badCoordinates = False 
+        while badCoordinates:
+            userIn = input('Enter the coordinate for the space you want to attack, separated by a comma (ex, A,1): ').upper()
+            userIn = userIn.replace(' ', '')
+            userIn = userIn.split(',')
+            desiredX = userIn[0]
+            desiredY = userIn[1]
+            if self.playerList[0].myEnemyViewGameBoard.spotExists(desiredX, desiredY): #if the desiredX and desiredY are valid
+                spot = self.playerList[0].myEnemyViewGameBoard.coordinates(desiredX, desiredY).getSymbol()
+                if spot == 'X' or spot == 'O': #if the valid coordinates have been used before
+                    print('This spot was already attacked.')
                 else:
-                    print('Something is wrong with your coordinates.')
+                    badCoordinates = False
+            else:
+                print('Something is wrong with your coordinates.')
         # check if comp player is hit
         if self.playerList[1].myFleetViewGameBoard.coordinates(desiredX, desiredY).getLocation() == 'ship':
             #hit
