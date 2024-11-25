@@ -5,6 +5,13 @@ import random
 
 DEBUG = True
 
+def randInit():
+    random.seed()
+    # 'burn' some numbers to prime the generator
+    random.randrange(100)
+    random.randrange(100)
+    random.randrange(100)
+
 class GameSpot:
     def __init__(self, fillChar = ''):
         self.occupiedBy = fillChar
@@ -433,8 +440,12 @@ class Game:
             #report miss to player
             print("It's a miss.")
     def compTurn(self):
-        pass
         # generate random attack coords
+        badCoords = True
+        while badCoords:
+            desiredX = random.randrange(12)
+            desiredY = random.randrange(12)
+            # TODO Add run check on coordinates, then an if block to change the badCoords flag to False
         # spotExists validation
         # not already guessed validation
         # check if human player was hit
@@ -446,5 +457,6 @@ class Game:
 game = Game()
 game.createHumanPlayer()
 game.createCompPlayer()
+randInit()
 while game.gameOver == False:
     pass
