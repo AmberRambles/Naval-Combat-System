@@ -492,5 +492,19 @@ game = Game()
 game.createHumanPlayer()
 game.createCompPlayer()
 randInit()
+if DEBUG:
+    printBug()
+    print('random number generator initiated!')
+#TODO have both players place their ships BEFORE entering main game loop
+#Setup Phase:
+
+#End of Setup. Starting game.
+if DEBUG:
+    printBug()
+    print('Entering main game loop')
+# Game Loop
 while game.gameOver == False:
-    pass
+    if DEBUG:
+        printBug()
+        print('Main game loop interation start')
+    
