@@ -451,12 +451,41 @@ class Game:
             desiredX = random.randrange(12)
             desiredY = random.randrange(12)
             # TODO Add run check on coordinates, then an if block to change the badCoords flag to False
-        # spotExists validation
-        # not already guessed validation
+            result = False
+            # spotExists validation
+            result = self.playerList[0].myFleetViewGameBoard.spotExists(desiredX, desiredY)
+            if result == True:
+                #check if the spot has been guessed already
+                result2 = False
+                selectedSpace = self.playerList[1].myEnemyViewGameBoard.coordinates(desiredX, desiredY).getSymbol()
+                if (selectedSpace == 'X') or (selectedSpace == 'O'):
+                    if DEBUG:
+                        printBug()
+                        print('CPU selected a space they already guessed')
+                else:
+                    # Good space!
+                    if DEBUG:
+                        printBug()
+                        print('CPU selected a good space!!')
+                    badCoords = False
+            else:
+                if DEBUG:
+                    printBug()
+                    print('CPU selected a non-existing space. Trying again.')
         # check if human player was hit
+        hit = False
+        if self.playerList[0].myFleetViewGameBoard.coordinates(desiredX, desiredY).getSymbol() == 'S':
+            hit = True
         # update GameBoards as needed for hit or miss
-        # report turn update to user
-        # check if human player lost
+        if hit:
+            pass
+            # mark gameBoards for hit
+            # check if human player lost
+            # report turn update to user
+        else:
+            pass
+            # mark gameBoards for miss
+            # report turn update to user
 
 #main logic
 game = Game()
