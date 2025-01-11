@@ -5,6 +5,9 @@ import random
 
 DEBUG = True
 
+def printBug():
+    print('DEBUG PRINT')
+
 def randInit():
     random.seed()
     # 'burn' some numbers to prime the generator
@@ -373,12 +376,14 @@ class Game:
         self.playerList = []
         self.turnCount = 0
         if DEBUG:
+            printBug()
             print('Game start')
         # continue here for game init
     def createHumanPlayer(self):
         name = ''
         name = input('What will you be called?\n')
         self.playerList.append(Player(name, False))
+        print(f'Thank You, Commander {name}.')
     def createCompPlayer(self):
         self.playerList.append(Player())
     def humanTurn(self):
