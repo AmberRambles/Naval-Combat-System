@@ -41,3 +41,8 @@ class Grid:
         for row in self.grid:
             print(' '.join(area.symbol for area in row))
 
+# Test zone
+
+testGrid = Grid()
+# Test the grid display
+testGrid.display()
