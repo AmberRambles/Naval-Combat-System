@@ -11,8 +11,8 @@ import random
 
 # random number generator priming
 random.seed()  # Seed the random number generator for randomness
-random.random()  # Calls to burn some randome numbers to ensure randomness in the first call
-random.random()  # Calls to burn some randome numbers to ensure randomness in the first call
-random.random()  # Calls to burn some randome numbers to ensure randomness in the first call
+random.random()  # Calls to burn some random numbers to ensure randomness in the first call
+random.random()  # Calls to burn some random numbers to ensure randomness in the first call
+random.random()  # Calls to burn some random numbers to ensure randomness in the first call
 
 # 
