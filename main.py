@@ -57,6 +57,14 @@ class Grid:
             print(row_str)
             i += 1
 
+# Player class -- represents a player in the game
+class Player:
+    def __init__(self, name = 'Nameless'):
+        self.ships = []
+        self.name = name
+        self.friendly_grid = Grid(name = self.name + ' Friendly Grid')
+        self.enemy_grid = Grid(name = self.name + ' Enemy Grid')
+
 # Test zone
 
 testGrid = Grid()
