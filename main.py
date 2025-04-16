@@ -69,8 +69,29 @@ class Player:
 user_input = ''
 print('\n\n')
 print('Welcome to Naval Combat System!')
-user_input = input('>>>>Enter a name for your player: <<<<\n')
+# user_input = input('>>>>Enter a name for your player: <<<<\n')
+user_input = 'Amber'  # For testing purposes, we can hardcode the name
 user = Player(name=user_input)
+print(f'Hello, {user.name}!\n')
 user.enemy_grid.display()
 print()
+user.friendly_grid.display()
+print()
+print('Before we get started, let\'s set up your ships!')
+print('You have 5 ships to place on your friendly grid. Coordinates are in the form of "x y" (x[space]y) where x is the column and y is the row.')
+print('Let\'s start with the first ship.')
+print('The first ship is 3 squares long. Provide the starting coordinates for the ship.')
+try:
+    ship_start = input('Enter coordinates (x y): ')
+    x, y = map(int, ship_start.split())
+    if 0 <= x < user.friendly_grid.size and 0 <= y < user.friendly_grid.size:
+        print(f'Placing ship at ({x}, {y})')
+        # Hold final changes until all ship spots are validated
+        user.friendly_grid.get_area(x, y).symbol = 'S'
+        # user.friendly_grid.set_area(y, x, Area(x, y, is_ship=True, symbol='S'))
+    else:
+        print('Coordinates out of bounds. Please try again.')
+except ValueError:
+    print('Invalid input. Please enter coordinates in the form "x y".')
+print('Your friendly grid after placing the first part of the first ship:')
 user.friendly_grid.display()
