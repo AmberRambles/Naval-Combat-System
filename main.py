@@ -40,7 +40,7 @@ class Grid:
 
     def display(self):
         print(f"Displaying grid '{self.name}':")
-        print(' '.join(str(i) for i in range(self.size)))
+        print('  ' + ' '.join(str(i) for i in range(self.size)))
         for row in self.grid:
             print(' '.join(area.symbol for area in row))
 
