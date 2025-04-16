@@ -39,7 +39,7 @@ class Grid:
         self.grid[x][y] = area
 
     def display(self):
-        print(f"Displaying grid '{self.name}':")
+        print(f"Displaying: '{self.name}':")
         print('  ' + ' '.join(str(i) for i in range(self.size)))
         for i, row in enumerate(self.grid):
             row_str = ''
