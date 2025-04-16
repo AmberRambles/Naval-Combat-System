@@ -41,13 +41,20 @@ class Grid:
     def display(self):
         print(f"Displaying grid '{self.name}':")
         print('  ' + ' '.join(str(i) for i in range(self.size)))
-        i = 0
-        for row in self.grid:
+        for i, row in enumerate(self.grid):
+            row_str = ''
             if i < 10:
                 gap = ' '
             else:
                 gap = ''
-            print(str(i) + gap + ' '.join(area.symbol for area in row))
+            row_str = str(i) + gap
+            for j, area in enumerate(row):
+                row_str += area.symbol
+                if j > 9:
+                    row_str += '  '
+                else:
+                    row_str += ' '
+            print(row_str)
             i += 1
 
 # Test zone
