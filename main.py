@@ -27,7 +27,8 @@ class Area:
 
 # Grid class -- represents the game grid
 class Grid:
-    def __init__(self, size = 12):
+    def __init__(self, name='Default Grid', size=12):
+        self.name = name
         self.size = size
         self.grid = [[Area(x, y) for y in range(size)] for x in range(size)]
 
@@ -38,6 +39,8 @@ class Grid:
         self.grid[x][y] = area
 
     def display(self):
+        print(f"Displaying grid '{self.name}':")
+        print(' '.join(str(i) for i in range(self.size)))
         for row in self.grid:
             print(' '.join(area.symbol for area in row))
 
