@@ -66,7 +66,11 @@ class Player:
         self.enemy_grid = Grid(name = self.name + ' Enemy Grid')
 
 # Test zone
-
-testGrid = Grid()
-# Test the grid display
-testGrid.display()
+user_input = ''
+print('\n\n')
+print('Welcome to Naval Combat System!')
+user_input = input('>>>>Enter a name for your player: <<<<\n')
+user = Player(name=user_input)
+user.enemy_grid.display()
+print()
+user.friendly_grid.display()
