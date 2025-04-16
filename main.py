@@ -87,7 +87,7 @@ try:
     if 0 <= x < user.friendly_grid.size and 0 <= y < user.friendly_grid.size:
         print(f'Placing ship at ({x}, {y})')
         # Hold final changes until all ship spots are validated
-        user.friendly_grid.get_area(x, y).symbol = 'S'
+        user.friendly_grid.get_area(y, x).symbol = 'S'
         # user.friendly_grid.set_area(y, x, Area(x, y, is_ship=True, symbol='S'))
     else:
         print('Coordinates out of bounds. Please try again.')
