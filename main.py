@@ -24,3 +24,20 @@ class Area:
         self.is_hit = is_hit
         self.is_guessed = is_guessed
         self.symbol = symbol
+
+# Grid class -- represents the game grid
+class Grid:
+    def __init__(self, size = 12):
+        self.size = size
+        self.grid = [[Area(x, y) for y in range(size)] for x in range(size)]
+
+    def get_area(self, x, y):
+        return self.grid[x][y]
+
+    def set_area(self, x, y, area):
+        self.grid[x][y] = area
+
+    def display(self):
+        for row in self.grid:
+            print(' '.join(area.symbol for area in row))
+
