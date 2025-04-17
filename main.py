@@ -104,3 +104,5 @@ except ValueError:
     print('Invalid input. Please enter coordinates in the form "x y".')
 print('Your friendly grid after placing the first part of the first ship:')
 user.friendly_grid.display()
+print('"Selected" area details')
+user.friendly_grid.get_area(y, x).debugPrint()
