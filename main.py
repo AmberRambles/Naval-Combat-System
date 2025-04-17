@@ -39,7 +39,7 @@ class Grid:
     def __init__(self, name='Default Grid', size=12):
         self.name = name
         self.size = size
-        self.grid = [[Area(x, y) for y in range(size)] for x in range(size)]
+        self.grid = [[Area(y, x) for y in range(size)] for x in range(size)]
 
     def get_area(self, x, y):
         return self.grid[x][y]
