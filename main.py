@@ -24,6 +24,15 @@ class Area:
         self.is_hit = is_hit
         self.is_guessed = is_guessed
         self.symbol = symbol
+    def debugPrint(self):
+        print('This Area contains:')
+        print(f'x: {self.x}')
+        print(f'y: {self.y}')
+        print(f'is_ship: {self.is_ship}')
+        print(f'is_hit: {self.is_hit}')
+        print(f'is_guessed: {self.is_guessed}')
+        print(f'symbol: {self.symbol}')
+        print()
 
 # Grid class -- represents the game grid
 class Grid:
