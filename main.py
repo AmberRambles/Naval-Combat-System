@@ -39,13 +39,13 @@ class Grid:
     def __init__(self, name='Default Grid', size=12):
         self.name = name
         self.size = size
-        self.grid = [[Area(y, x) for y in range(size)] for x in range(size)]
+        self.grid = [[Area(x, y) for x in range(size)] for y in range(size)]
 
     def get_area(self, x, y):
-        return self.grid[x][y]
+        return self.grid[y][x]
 
     def set_area(self, x, y, area):
-        self.grid[x][y] = area
+        self.grid[y][x] = area
 
     def display(self):
         print(f"Displaying: '{self.name}':")
@@ -96,7 +96,7 @@ try:
     if 0 <= x < user.friendly_grid.size and 0 <= y < user.friendly_grid.size:
         print(f'Placing ship at ({x}, {y})')
         # Hold final changes until all ship spots are validated
-        user.friendly_grid.get_area(y, x).symbol = 'S'
+        user.friendly_grid.get_area(x, y).symbol = 'S'
         # user.friendly_grid.set_area(y, x, Area(x, y, is_ship=True, symbol='S'))
     else:
         print('Coordinates out of bounds. Please try again.')
@@ -105,4 +105,4 @@ except ValueError:
 print('Your friendly grid after placing the first part of the first ship:')
 user.friendly_grid.display()
 print('"Selected" area details')
-user.friendly_grid.get_area(y, x).debugPrint()
+user.friendly_grid.get_area(x, y).debugPrint()
