@@ -66,6 +66,32 @@ class Grid:
             print(row_str)
             i += 1
 
+# Ship class -- represents a ship in the game
+class Ship:
+    def __init__(self, name='Default Ship', length=3, symbol='S'):
+        self.name = name
+        self.length = length
+        self.symbol = symbol
+        self.areas = []  # List of Area objects that make up the ship
+
+    def add_area(self, area):
+        if len(self.areas) < self.length:
+            self.areas.append(area)
+            area.is_ship = True
+            area.symbol = self.symbol
+        else:
+            print('Ship is already full!')
+    
+    def debugPrint(self):
+        print('This Ship contains:')
+        print(f'name: {self.name}')
+        print(f'length: {self.length}')
+        print(f'symbol: {self.symbol}')
+        print('Areas:')
+        for area in self.areas:
+            area.debugPrint()
+        print()
+
 # Player class -- represents a player in the game
 class Player:
     def __init__(self, name = 'Nameless'):
@@ -73,6 +99,46 @@ class Player:
         self.name = name
         self.friendly_grid = Grid(name = self.name + ' Friendly Grid')
         self.enemy_grid = Grid(name = self.name + ' Enemy Grid')
+    
+    def displayGrids(self):
+        print(f'{self.name}\'s Enemy Grid:')
+        self.enemy_grid.display()
+        print()
+        print(f'{self.name}\'s Friendly Grid:')
+        self.friendly_grid.display()
+        print()
+        
+    def insert_ship(self, ship):
+        area_list = []
+        print('Inserting ship...')
+        for i in range(ship.length):
+            try:
+                ship_start = input('Enter coordinates (x y): ')
+                x, y = map(int, ship_start.split())
+                if 0 <= x < self.friendly_grid.size and 0 <= y < self.friendly_grid.size:
+                    print(f'Placing ship at ({x}, {y})')
+                    # Hold final changes until all ship spots are validated
+                    # Check if the area is already occupied by another ship
+                    if self.friendly_grid.get_area(x, y).is_ship:
+                        print('Area already occupied by another ship. Please try again.')
+                        return False
+                    # TODO: Check if the area is directly adjacent to another area in area_list. Otherwise reject this area.
+                else:
+                    print('Coordinates out of bounds. Please try again.')
+                    return False
+            except ValueError:
+                print('Invalid input. Please enter coordinates in the form "x y".')
+                return False
+            print('"Selected" area details')
+            self.friendly_grid.get_area(x, y).debugPrint()
+            print('New area(s) details')
+            area_list.append(Area(x, y, is_ship=True, symbol='S'))
+            for area in area_list:
+                area.debugPrint()
+        for area in area_list:
+            self.friendly_grid.set_area(area.x, area.y, area)
+            ship.add_area(area)
+        return True
 
 # Test zone
 user_input = ''
@@ -82,43 +148,18 @@ print('Welcome to Naval Combat System!')
 user_input = 'Amber'  # For testing purposes, we can hardcode the name
 user = Player(name=user_input)
 print(f'Hello, {user.name}!\n')
-user.enemy_grid.display()
-print()
-user.friendly_grid.display()
-print()
+user.displayGrids()
 print('Before we get started, let\'s set up your ships!')
 print('You have 5 ships to place on your friendly grid. Coordinates are in the form of "x y" (x[space]y) where x is the column and y is the row.')
 print('Let\'s start with the first ship.')
 print('The first ship is 3 squares long. Provide the starting coordinates for the ship.')
-def insert_ship(player):
-    area_list = []
-    print('Inserting ship...')
-    try:
-        ship_start = input('Enter coordinates (x y): ')
-        x, y = map(int, ship_start.split())
-        if 0 <= x < user.friendly_grid.size and 0 <= y < user.friendly_grid.size:
-            print(f'Placing ship at ({x}, {y})')
-            # Hold final changes until all ship spots are validated
-            # Check if the area is already occupied by another ship
-            if user.friendly_grid.get_area(x, y).is_ship:
-                print('Area already occupied by another ship. Please try again.')
-                return False
-        else:
-            print('Coordinates out of bounds. Please try again.')
-            return False
-    except ValueError:
-        print('Invalid input. Please enter coordinates in the form "x y".')
-        return False
-    print('"Selected" area details')
-    user.friendly_grid.get_area(x, y).debugPrint()
-    print('New area(s) details')
-    area_list.append(Area(x, y, is_ship=True, symbol='S'))
-    for area in area_list:
-        area.debugPrint()
-    # TODO -- Check if the ship has more spots to fill
-    # TODO -- Place the areas in the grid
-    return True
+
 # Test the insert_ship function
-result = insert_ship(user)
+ship = Ship(name='Test Ship', length=3, symbol='S')
+print('Ship details before insertion:')
+ship.debugPrint()
+print('Attempting to insert ship...')
+result = user.insert_ship(ship)
 print(f'Insert ship result: {result}')
+user.displayGrids()
 print('End of test zone')
