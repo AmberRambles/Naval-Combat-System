@@ -96,6 +96,12 @@ class Ship:
 class Player:
     def __init__(self, name = 'Nameless'):
         self.ships = []
+        self.ships.append(Ship(name='Carrier', length=5, symbol='C'))
+        self.ships.append(Ship(name='Battleship', length=4, symbol='B'))
+        self.ships.append(Ship(name='Cruiser', length=3, symbol='R'))
+        self.ships.append(Ship(name='Submarine', length=3, symbol='S'))
+        self.ships.append(Ship(name='Destroyer', length=2, symbol='D'))
+        self.ships.append(Ship(name='Titanicca', length=6, symbol='T'))
         self.name = name
         self.friendly_grid = Grid(name = self.name + ' Friendly Grid')
         self.enemy_grid = Grid(name = self.name + ' Enemy Grid')
