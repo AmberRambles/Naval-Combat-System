@@ -146,6 +146,7 @@ print('\n\n')
 print('Welcome to Naval Combat System!')
 # user_input = input('>>>>Enter a name for your player: <<<<\n')
 user_input = 'Amber'  # For testing purposes, we can hardcode the name
+# TODO: Remove this hardcoded name and uncomment the input line above
 user = Player(name=user_input)
 print(f'Hello, {user.name}!\n')
 user.displayGrids()
