@@ -121,6 +121,22 @@ class Player:
             try:
                 ship_start = input('Enter coordinates (x y): ')
                 x, y = map(int, ship_start.split())
+                ship_direction = input("Enter 'u' or 'up' for up, 'd' or 'down' for down, 'l' or 'left' for left, 'r' or 'right' for right: ").lower()
+                if ship_direction in ['u', 'up']:
+                    # y -= i
+                    pass
+                elif ship_direction in ['d', 'down']:
+                    # y += i
+                    pass
+                elif ship_direction in ['l', 'left']:
+                    # x -= i
+                    pass
+                elif ship_direction in ['r', 'right']:
+                    # x += i
+                    pass
+                else:
+                    print('Invalid direction. Please try again.')
+                    return False
                 if 0 <= x < self.friendly_grid.size and 0 <= y < self.friendly_grid.size:
                     print(f'Placing ship at ({x}, {y})')
                     # Hold final changes until all ship spots are validated
