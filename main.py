@@ -162,16 +162,31 @@ class Player:
             ship.add_area(area)
         return True
 
+# Game Object Class - Represents the intended flow of the game
+class NavalCombatSystem:
+    def __init__(self):
+        self.user = 0
+        self.computer = 0
+        self.user_input = ''
+    def _getPlayerName_(self):
+        # self.user_input = input('>>>>Enter a name for your player: <<<<\n')
+        self.user_input = 'Amber'  # For testing purposes, we can hardcode the name
+        # TODO: Remove this hardcoded name and uncomment the input line above
+    def _welcome_(self):
+        print('\n\n')
+        print('Welcome to Naval Combat System!')
+    def start(self):
+        self._welcome_()
+        self._getPlayerName_()
+        self.user = Player(name=self.user_input)
+        print(f'Hello, {self.user.name}!\n')
+        self.user.displayGrids()
+
 # Test zone
-user_input = ''
-print('\n\n')
-print('Welcome to Naval Combat System!')
-# user_input = input('>>>>Enter a name for your player: <<<<\n')
-user_input = 'Amber'  # For testing purposes, we can hardcode the name
-# TODO: Remove this hardcoded name and uncomment the input line above
-user = Player(name=user_input)
-print(f'Hello, {user.name}!\n')
-user.displayGrids()
+
+game = NavalCombatSystem()
+game.start()
+
 '''print('Before we get started, let\'s set up your ships!')
 print('You have 5 ships to place on your friendly grid. Coordinates are in the form of "x y" (x[space]y) where x is the column and y is the row.')
 print('Let\'s start with the first ship.')
