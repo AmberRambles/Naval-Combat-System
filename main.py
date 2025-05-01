@@ -172,12 +172,12 @@ user_input = 'Amber'  # For testing purposes, we can hardcode the name
 user = Player(name=user_input)
 print(f'Hello, {user.name}!\n')
 user.displayGrids()
-print('Before we get started, let\'s set up your ships!')
+'''print('Before we get started, let\'s set up your ships!')
 print('You have 5 ships to place on your friendly grid. Coordinates are in the form of "x y" (x[space]y) where x is the column and y is the row.')
 print('Let\'s start with the first ship.')
-print('The first ship is 3 squares long. Provide the starting coordinates for the ship.')
+print('The first ship is 3 squares long. Provide the starting coordinates for the ship.')'''
 
-# Test the insert_ship function
+'''# Test the insert_ship function
 ship = Ship(name='Test Ship', length=3, symbol='S')
 print('Ship details before insertion:')
 ship.debugPrint()
@@ -185,4 +185,4 @@ print('Attempting to insert ship...')
 result = user.insert_ship(ship)
 print(f'Insert ship result: {result}')
 user.displayGrids()
-print('End of test zone')
+print('End of test zone')'''
