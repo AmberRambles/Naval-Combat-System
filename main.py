@@ -17,13 +17,15 @@ random.random()  # Calls to burn some random numbers to ensure randomness in the
 
 # Area class -- represents a single square in the game grid
 class Area:
-    def __init__(self, x, y, is_ship=False, is_hit=False, is_guessed=False, symbol='?'):
+    def __init__(self, x, y, is_ship=False, is_hit=False, is_guessed=False, symbol='W', occupied_by = 'water', radar_symbol = '?'):
         self.x = x
         self.y = y
         self.is_ship = is_ship
         self.is_hit = is_hit
         self.is_guessed = is_guessed
         self.symbol = symbol
+        self.occupied_by = occupied_by
+        self.radar_symbol = radar_symbol
     def debugPrint(self):
         print('This Area contains:')
         print(f'x: {self.x}')
@@ -32,6 +34,8 @@ class Area:
         print(f'is_hit: {self.is_hit}')
         print(f'is_guessed: {self.is_guessed}')
         print(f'symbol: {self.symbol}')
+        print(f'occupied_by: {self.occupied_by}')
+        print(f'radar_symbol: {self.radar_symbol}')
         print()
 
 # Grid class -- represents the game grid
@@ -66,6 +70,25 @@ class Grid:
             print(row_str)
             i += 1
 
+    def radar_display(self):
+        print(f"Displaying: '{self.name}' (radar view):")
+        print('  ' + ' '.join(str(i) for i in range(self.size)))
+        for i, row in enumerate(self.grid):
+            row_str = ''
+            if i < 10:
+                gap = ' '
+            else:
+                gap = ''
+            row_str = str(i) + gap
+            for j, area in enumerate(row):
+                row_str += area.radar_symbol
+                if j > 9:
+                    row_str += '  '
+                else:
+                    row_str += ' '
+            print(row_str)
+            i += 1
+
 # Ship class -- represents a ship in the game
 class Ship:
     def __init__(self, name='Default Ship', length=3, symbol='S'):
@@ -81,7 +104,7 @@ class Ship:
             area.symbol = self.symbol
         else:
             print('Ship is already full!')
-    
+
     def debugPrint(self):
         print('This Ship contains:')
         print(f'name: {self.name}')
