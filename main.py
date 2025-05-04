@@ -191,9 +191,35 @@ class Player:
         menu.append('1) Change name')
         menu.append('2) Place Ship')
         menu.append('3) View my waters')
-        menu.append('4) Quit')
-        for line in menu:
-            print(line)
+        menu.append('4) Ready up')
+        menu.append('5) Quit')
+        ready = False
+        while not ready:
+            print('Please select an option from the menu:')
+            for line in menu:
+                print(line)
+            try:
+                choice = int(input('Enter your choice: '))
+                if choice == 1:
+                    self.name = input('Enter new name: ')
+                elif choice == 2:
+                    print('ABBREVIATED SHIP PLACEMENT FOR TESTING')
+                    ship = Ship(name='Test Ship', length=3, symbol='S')
+                    self.insert_ship(ship)
+                elif choice == 3:
+                    self.friendly_grid.display()
+                elif choice == 4:
+                    # TODO: Check if all ships are placed before allowing ready up
+                    print('Ready!')
+                    ready = True
+                elif choice == 5:
+                    print('Exiting...')
+                    break
+                else:
+                    print('Invalid choice. Please try again.')
+            except ValueError:
+                print('Invalid input. Please enter a number.')
+                continue
 
 # Game Object Class - Represents the intended flow of the game
 class NavalCombatSystem:
@@ -215,6 +241,7 @@ class NavalCombatSystem:
         print(f'Hello, {self.playerOne.name}!\n')
         self.playerOne.displayGrids()
         self.playerOne.menuOne('One')
+        print('Player One is ready!')
 
 # Test zone
 
