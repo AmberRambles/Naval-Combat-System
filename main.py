@@ -188,12 +188,12 @@ class Player:
 # Game Object Class - Represents the intended flow of the game
 class NavalCombatSystem:
     def __init__(self):
-        self.user = 0
+        self.playerOne = 0
         self.computer = 0
-        self.user_input = ''
+        self.playerOne_input = ''
     def _getPlayerName_(self):
-        # self.user_input = input('>>>>Enter a name for your player: <<<<\n')
-        self.user_input = 'Amber'  # For testing purposes, we can hardcode the name
+        # self.playerOne_input = input('>>>>Enter a name for your player: <<<<\n')
+        self.playerOne_input = 'Amber'  # For testing purposes, we can hardcode the name
         # TODO: Remove this hardcoded name and uncomment the input line above
     def _welcome_(self):
         print('\n\n')
@@ -201,9 +201,10 @@ class NavalCombatSystem:
     def start(self):
         self._welcome_()
         self._getPlayerName_()
-        self.user = Player(name=self.user_input)
-        print(f'Hello, {self.user.name}!\n')
-        self.user.displayGrids()
+        self.playerOne = Player(name=self.playerOne_input)
+        print(f'Hello, {self.playerOne.name}!\n')
+        self.playerOne.displayGrids()
+        self.playerOne.menuOne('One')
 
 # Test zone
 
@@ -220,7 +221,7 @@ ship = Ship(name='Test Ship', length=3, symbol='S')
 print('Ship details before insertion:')
 ship.debugPrint()
 print('Attempting to insert ship...')
-result = user.insert_ship(ship)
+result = playerOne.insert_ship(ship)
 print(f'Insert ship result: {result}')
-user.displayGrids()
+playerOne.displayGrids()
 print('End of test zone')'''
