@@ -185,16 +185,16 @@ class Player:
             ship.add_area(area)
         return True
     def menuOne(self, playerNum):
-        menu = []
-        menu.append('--Menu 1--')
-        menu.append(f'Player {playerNum} -- {self.name}')
-        menu.append('1) Change name')
-        menu.append('2) Place Ship')
-        menu.append('3) View my waters')
-        menu.append('4) Ready up')
-        menu.append('5) Quit')
         ready = False
         while not ready:
+            menu = []
+            menu.append('--Menu 1--')
+            menu.append(f'Player {playerNum} -- {self.name}')
+            menu.append('1) Change name')
+            menu.append('2) Place Ship')
+            menu.append('3) View my waters')
+            menu.append('4) Ready up')
+            menu.append('5) Quit')    
             print('Please select an option from the menu:')
             for line in menu:
                 print(line)
