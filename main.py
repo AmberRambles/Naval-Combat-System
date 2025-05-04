@@ -184,6 +184,16 @@ class Player:
             self.friendly_grid.set_area(area.x, area.y, area)
             ship.add_area(area)
         return True
+    def menuOne(self, playerNum):
+        menu = []
+        menu.append('--Menu 1--')
+        menu.append(f'Player {playerNum} -- {self.name}')
+        menu.append('1) Change name')
+        menu.append('2) Place Ship')
+        menu.append('3) View my waters')
+        menu.append('4) Quit')
+        for line in menu:
+            print(line)
 
 # Game Object Class - Represents the intended flow of the game
 class NavalCombatSystem:
