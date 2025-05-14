@@ -118,23 +118,25 @@ class Ship:
 # Player class -- represents a player in the game
 class Player:
     def __init__(self, name = 'Nameless'):
+        self.name = name
         self.ships = []
+        self._loadShips_()
+        self.local_waters = Grid(name = self.name + "'s Friendly Waters", size = 12)
+        
+    def _loadShips_(self):
         self.ships.append(Ship(name='Carrier', length=5, symbol='C'))
         self.ships.append(Ship(name='Battleship', length=4, symbol='B'))
         self.ships.append(Ship(name='Cruiser', length=3, symbol='R'))
         self.ships.append(Ship(name='Submarine', length=3, symbol='S'))
         self.ships.append(Ship(name='Destroyer', length=2, symbol='D'))
         self.ships.append(Ship(name='Titanicca', length=6, symbol='T'))
-        self.name = name
-        self.friendly_grid = Grid(name = self.name + ' Friendly Grid')
-        self.enemy_grid = Grid(name = self.name + ' Enemy Grid')
-    
+
     def displayGrids(self):
-        print(f'{self.name}\'s Enemy Grid:')
-        self.enemy_grid.display()
+        print(f'{self.name}\'s Radar of Enemy Territory:')
+        # TODO: Print enemy friendlies through a radar view
         print()
         print(f'{self.name}\'s Friendly Grid:')
-        self.friendly_grid.display()
+        self.local_waters.display()
         print()
         
     def insert_ship(self, ship):
@@ -160,11 +162,11 @@ class Player:
                 else:
                     print('Invalid direction. Please try again.')
                     return False
-                if 0 <= x < self.friendly_grid.size and 0 <= y < self.friendly_grid.size:
+                if 0 <= x < self.local_waters.size and 0 <= y < self.local_waters.size:
                     print(f'Placing ship at ({x}, {y})')
                     # Hold final changes until all ship spots are validated
                     # Check if the area is already occupied by another ship
-                    if self.friendly_grid.get_area(x, y).is_ship:
+                    if self.local_waters.get_area(x, y).is_ship:
                         print('Area already occupied by another ship. Please try again.')
                         return False
                     # TODO: Check if the area is directly adjacent to another area in area_list. Otherwise reject this area.
@@ -175,13 +177,13 @@ class Player:
                 print('Invalid input. Please enter coordinates in the form "x y".')
                 return False
             print('"Selected" area details')
-            self.friendly_grid.get_area(x, y).debugPrint()
+            self.local_waters.get_area(x, y).debugPrint()
             print('New area(s) details')
             area_list.append(Area(x, y, is_ship=True, symbol='S'))
             for area in area_list:
                 area.debugPrint()
         for area in area_list:
-            self.friendly_grid.set_area(area.x, area.y, area)
+            self.local_waters.set_area(area.x, area.y, area)
             ship.add_area(area)
         return True
     def menuOne(self, playerNum):
@@ -207,7 +209,7 @@ class Player:
                     ship = Ship(name='Test Ship', length=3, symbol='S')
                     self.insert_ship(ship)
                 elif choice == 3:
-                    self.friendly_grid.display()
+                    self.local_waters.display()
                 elif choice == 4:
                     # TODO: Check if all ships are placed before allowing ready up
                     print('Ready!')
