@@ -96,6 +96,10 @@ class Ship:
         self.length = length
         self.symbol = symbol
         self.areas = []  # List of Area objects that make up the ship
+        self.type = 'ship'
+        self.deployed = False  # Indicates if the ship has been deployed
+        self.is_sunk = False  # Indicates if the ship has been sunk
+        self.hit_count = 0  # Number of hits the ship has taken
 
     def add_area(self, area):
         if len(self.areas) < self.length:
