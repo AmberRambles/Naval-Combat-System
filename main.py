@@ -5,10 +5,8 @@ Amber Shifflett, 2025
 Naval-Combat-System is a simple implementation of the classic game Battleship.
 '''
 # main.py
-
 # imports
 import random
-
 # random number generator priming
 random.seed()  # Seed the random number generator for randomness
 random.random()  # Calls to burn some random numbers to ensure randomness in the first call
@@ -44,13 +42,10 @@ class Grid:
         self.name = name
         self.size = size
         self.grid = [[Area(x, y) for x in range(size)] for y in range(size)]
-
     def get_area(self, x, y):
         return self.grid[y][x]
-
     def set_area(self, x, y, area):
         self.grid[y][x] = area
-
     def display(self):
         print(f"Displaying: '{self.name}':")
         print('  ' + ' '.join(str(i) for i in range(self.size)))
@@ -69,7 +64,6 @@ class Grid:
                     row_str += ' '
             print(row_str)
             i += 1
-
     def radar_display(self):
         print(f"Displaying: '{self.name}' (radar view):")
         print('  ' + ' '.join(str(i) for i in range(self.size)))
@@ -100,7 +94,6 @@ class Ship:
         self.deployed = False  # Indicates if the ship has been deployed
         self.is_sunk = False  # Indicates if the ship has been sunk
         self.hit_count = 0  # Number of hits the ship has taken
-
     def add_area(self, area):
         if len(self.areas) < self.length:
             self.areas.append(area)
@@ -108,7 +101,6 @@ class Ship:
             area.symbol = self.symbol
         else:
             print('Ship is already full!')
-
     def debugPrint(self):
         print('This Ship contains:')
         print(f'name: {self.name}')
@@ -126,7 +118,6 @@ class Player:
         self.ships = []
         self._loadShips_()
         self.local_waters = Grid(name = self.name + "'s Friendly Waters", size = 12)
-        
     def _loadShips_(self):
         self.ships.append(Ship(name='Carrier', length=5, symbol='C'))
         self.ships.append(Ship(name='Battleship', length=4, symbol='B'))
@@ -134,7 +125,6 @@ class Player:
         self.ships.append(Ship(name='Submarine', length=3, symbol='S'))
         self.ships.append(Ship(name='Destroyer', length=2, symbol='D'))
         self.ships.append(Ship(name='Titanicca', length=6, symbol='T'))
-
     def displayGrids(self):
         print(f'{self.name}\'s Radar of Enemy Territory:')
         # TODO: Print enemy friendlies through a radar view
@@ -142,7 +132,6 @@ class Player:
         print(f'{self.name}\'s Friendly Grid:')
         self.local_waters.display()
         print()
-        
     def insert_ship(self, ship):
         area_list = []
         print('Inserting ship...')
@@ -250,15 +239,12 @@ class NavalCombatSystem:
         print('Player One is ready!')
 
 # Test zone
-
 game = NavalCombatSystem()
 game.start()
-
 '''print('Before we get started, let\'s set up your ships!')
 print('You have 5 ships to place on your friendly grid. Coordinates are in the form of "x y" (x[space]y) where x is the column and y is the row.')
 print('Let\'s start with the first ship.')
 print('The first ship is 3 squares long. Provide the starting coordinates for the ship.')'''
-
 '''# Test the insert_ship function
 ship = Ship(name='Test Ship', length=3, symbol='S')
 print('Ship details before insertion:')
